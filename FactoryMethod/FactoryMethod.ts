@@ -47,22 +47,18 @@ class VehicleFactory {
   }
 }
 
-const rl = require("readline").createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+(function() {
+    const rl = require("readline").createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
 
-rl.question(
-  "Welcome to Vehicle creator, what type o vehicle do you want to create? ( C | S | T ) ",
-  (vehicleType: VehicleType) => {
-    const vehicleFactory = new VehicleFactory();
-    const vehicle = vehicleFactory.createVehicle(
-      vehicleType,
-      1,
-      "Model",
-      "Brand"
+    rl.question("Welcome to Vehicle creator, what type o vehicle do you want to create? ( C | S | T ) ",
+        (vehicleType: VehicleType) => {
+            const vehicleFactory = new VehicleFactory();
+            const vehicle = vehicleFactory.createVehicle(vehicleType, 1, "Model", "Brand");
+            console.log(`Top speed: ${vehicle.getTopSpeed()}`);
+            rl.close();
+        }
     );
-    console.log(`Top speed: ${vehicle.getTopSpeed()}`);
-    rl.close();
-  }
-);
+})();
